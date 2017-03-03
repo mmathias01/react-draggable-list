@@ -5,6 +5,7 @@
   "main": "js/index.js",
   "scripts": {
     "prepublish": "babel -s inline -d js/ src/ --ignore '*.test.*' && flow-copy-source -v src js --ignore '*.test.*'",
+    "preinstall": "npm run prepublish",
     "example-build": "NODE_ENV=development browserify -t babelify -do example/bundle.js example/main.js",
     "example-watch": "NODE_ENV=development-hmr watchify -v -p browserify-hmr -t babelify -do example/bundle.js example/main.js",
     "example-build-prod": "NODE_ENV=production browserify -t babelify -do example/bundle.js example/main.js",
