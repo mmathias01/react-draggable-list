@@ -40,7 +40,7 @@ type Props = {
   springConfig: Object;
   padding: number;
   unsetZIndex: boolean;
-  eventHandlers: Object;
+  additionalProps: Object;
 };
 type State = {
   list: Array<Object>;
@@ -68,7 +68,7 @@ export default class DraggableList extends React.Component {
     springConfig: PropTypes.object,
     padding: PropTypes.number,
     unsetZIndex: PropTypes.bool,
-    eventHandlers: PropTypes.object
+    additionalProps: PropTypes.object
   };
   static defaultProps: DefaultProps = {
     springConfig: {stiffness: 300, damping: 50},
@@ -378,7 +378,7 @@ export default class DraggableList extends React.Component {
   }
 
   render() {
-    const {springConfig, container, padding, template, unsetZIndex, eventHandlers} = this.props;
+    const {springConfig, container, padding, template, unsetZIndex, additionalProps} = this.props;
     const {list, dragging, lastDrag, useAbsolutePositioning} = this.state;
 
     const keyFn = this._getKeyFn();
@@ -427,7 +427,7 @@ export default class DraggableList extends React.Component {
                 (lastDrag && lastDrag.itemKey === key ? list.length : i)
               }
               makeDragHandle={makeDragHandle}
-              eventHandlers={eventHandlers}
+              additionalProps={additionalProps}
             />
           }
         />
