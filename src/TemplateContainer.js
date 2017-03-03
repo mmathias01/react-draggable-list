@@ -8,6 +8,7 @@ type Props = {
   itemSelected: number;
   anySelected: number;
   dragHandle: Function;
+  eventHandlers: Object;
 };
 export default class TemplateContainer extends React.Component {
   props: Props;
@@ -16,7 +17,8 @@ export default class TemplateContainer extends React.Component {
     template: PropTypes.func.isRequired,
     itemSelected: PropTypes.number.isRequired,
     anySelected: PropTypes.number.isRequired,
-    dragHandle: PropTypes.func.isRequired
+    dragHandle: PropTypes.func.isRequired,
+    eventHandlers: PropTypes.object
   };
 
   shouldComponentUpdate(nextProps: Props): boolean {
@@ -41,6 +43,7 @@ export default class TemplateContainer extends React.Component {
         itemSelected={itemSelected}
         anySelected={anySelected}
         dragHandle={dragHandle}
+        eventHandlers={eventHandlers}
       />
     );
   }
