@@ -8,7 +8,7 @@ type Props = {
   itemSelected: number;
   anySelected: number;
   dragHandle: Function;
-  additionalProps: Object;
+  commonProps?: ?Object;
 };
 export default class TemplateContainer extends React.Component {
   props: Props;
@@ -18,7 +18,12 @@ export default class TemplateContainer extends React.Component {
     itemSelected: PropTypes.number.isRequired,
     anySelected: PropTypes.number.isRequired,
     dragHandle: PropTypes.func.isRequired,
-    additionalProps: PropTypes.object
+    commonProps: PropTypes.object
+  };
+
+  _template: React.Component<any,any,any>;
+  _templateSetter = (cmp: *) => {
+    this._template = cmp;
   };
 
   shouldComponentUpdate(nextProps: Props): boolean {
@@ -29,21 +34,21 @@ export default class TemplateContainer extends React.Component {
   }
 
   getTemplate(): React.Component<any,any,any> {
-    return this.refs.template;
+    return this._template;
   }
 
   render() {
-    const {item, itemSelected, anySelected, dragHandle, additionalProps} = this.props;
+    const {item, itemSelected, anySelected, dragHandle, commonProps} = this.props;
     const Template = this.props.template;
 
     return (
       <Template
-        ref="template"
+        ref={this._templateSetter}
         item={item}
         itemSelected={itemSelected}
         anySelected={anySelected}
         dragHandle={dragHandle}
-        additionalProps={additionalProps}
+        commonProps={commonProps}
       />
     );
   }
