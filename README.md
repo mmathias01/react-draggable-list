@@ -62,6 +62,12 @@ following props:
  isn't animating. This may have a small performance cost when the list starts
  and stops animating. Use this if you need to avoid having the list item create
  a stacking context when it's not being animated.
+* `autoScrollMaxSpeed` is an optional number that allows the scroll speed when
+ the user drags to the top or bottom of the list to be overridden.
+* `autoScrollRegionSize` is an optional number that allows the height of the
+ region that triggers auto-scrolling when dragged onto to be overridden.
+* `commonProps` is an optional value that will be passed as the `commonProps`
+ prop to every template component instance.
 
 A DraggableList instance has the following methods:
 * `getItemInstance(key)` will return a reference to the mounted instance of the
@@ -80,6 +86,8 @@ The template component is passed the following props:
 * `dragHandle` is a function which should be used during rendering to wrap the
  element to be used as the drag handle. The whole item will be draggable by the
  wrapped element.
+* `commonProps` will be set to the same value passed as the `commonProps` prop
+ to the DraggableList component.
 
 The template component should be styled with max-height set to "100%" for best
 results.
